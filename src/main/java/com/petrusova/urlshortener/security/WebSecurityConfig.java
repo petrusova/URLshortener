@@ -1,6 +1,6 @@
 package com.petrusova.urlshortener.security;
 
-import com.petrusova.urlshortener.service.AuthenticationService;
+import com.petrusova.urlshortener.service.UserDetailsBusinessService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -22,12 +22,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
-    private final AuthenticationService authenticationService;
+    private final UserDetailsBusinessService userDetailsBusinessService;
 
     @Autowired
-    public WebSecurityConfig(PasswordEncoder passwordEncoder, AuthenticationService authenticationService) {
+    public WebSecurityConfig(PasswordEncoder passwordEncoder, UserDetailsBusinessService userDetailsBusinessService) {
         this.passwordEncoder = passwordEncoder;
-        this.authenticationService = authenticationService;
+        this.userDetailsBusinessService = userDetailsBusinessService;
     }
 
     @Override
@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder);
-        provider.setUserDetailsService(authenticationService);
+        provider.setUserDetailsService(userDetailsBusinessService);
         return provider;
     }
 }
