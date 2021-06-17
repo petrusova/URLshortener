@@ -45,10 +45,10 @@ public class UserDetailsBusinessServiceTest {
         // When
         try {
             userDetailsBusinessService.loadUserByUsername(accountId);
+            fail("Exception not thrown!");
         } catch (UsernameNotFoundException e) {
             // Then
             assertThat(e.getMessage()).isEqualTo("Account with id 'accountId' not found");
         }
-        fail("Exception not thrown!");
     }
 }
