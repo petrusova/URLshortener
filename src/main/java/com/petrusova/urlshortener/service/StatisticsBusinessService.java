@@ -30,15 +30,15 @@ public class StatisticsBusinessService implements StatisticsService {
 
     @Override
     public Map<String, Integer> getStatistics(String accountId) {
-        Optional<Account> account = accountService.findAccount(accountId);
-        if (account.isEmpty()) {
+        Account account = accountService.findAccount(accountId);
+        if (account == null) {
             LOGGER.warn("Trying to retrieve statistics for nonexistent account id '{}'.", accountId);
             return Collections.emptyMap();
         }
         List<Url> urlsForAccount = urlService.findAllByAccountId(accountId);
-        if(urlsForAccount.isEmpty()) {
+        if (urlsForAccount.isEmpty()) {
             LOGGER.warn("No URLs registered for account id '{}'.", accountId);
-            return  Collections.emptyMap();
+            return Collections.emptyMap();
         }
         return urlsForAccount.stream().collect(Collectors.toMap(Url::getLongURL, Url::getCalls));
     }

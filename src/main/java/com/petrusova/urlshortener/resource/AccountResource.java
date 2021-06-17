@@ -1,5 +1,6 @@
 package com.petrusova.urlshortener.resource;
 
+import com.petrusova.urlshortener.domain.Account;
 import com.petrusova.urlshortener.resource.dtos.AccountCreationRequest;
 import com.petrusova.urlshortener.resource.dtos.AccountCreationResponse;
 import com.petrusova.urlshortener.service.AccountService;
@@ -33,15 +34,15 @@ public class AccountResource {
             return ResponseEntity.badRequest().body(response);
         }
 
-        String createdAccountPassword = accountService.createAccount(request.getAccountId());
+        Account createdAccount = accountService.createAccount(request.getAccountId());
 
-        if (createdAccountPassword == null) {
+        if (createdAccount == null) {
             LOGGER.warn("Account not created for id: '{}', it already exists.", request.getAccountId());
             AccountCreationResponse response = new AccountCreationResponse(false, "Account for this id already exists.");
             return ResponseEntity.badRequest().body(response);
         }
         LOGGER.info("Account created for id: '{}'", request.getAccountId());
-        AccountCreationResponse response = new AccountCreationResponse(true, "Your account is opened.", createdAccountPassword);
+        AccountCreationResponse response = new AccountCreationResponse(true, "Your account is opened.", createdAccount.getPassword());
         return ResponseEntity.ok().body(response);
     }
 }

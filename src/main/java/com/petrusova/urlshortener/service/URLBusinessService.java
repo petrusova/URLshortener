@@ -42,13 +42,6 @@ public class URLBusinessService implements URLService {
     }
 
     @Override
-    public Url findUrlByLong(String longURL) {
-        Optional<Url> url = urlRepository.findByLongURL(longURL);
-        return url.orElse(null);
-
-    }
-
-    @Override
     public List<Url> findAllByAccountId(String accountId) {
         return urlRepository.findAllByAccountId(accountId);
     }

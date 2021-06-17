@@ -7,8 +7,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AuthenticationService implements UserDetailsService {
 
@@ -21,11 +19,11 @@ public class AuthenticationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Account> account = accountService.findAccount(username);
-        if (account.isEmpty()) {
+        Account account = accountService.findAccount(username);
+        if (account == null) {
             throw new UsernameNotFoundException("Account with id '" + username + "' not found");
         } else {
-            return account.get();
+            return account;
         }
     }
 }

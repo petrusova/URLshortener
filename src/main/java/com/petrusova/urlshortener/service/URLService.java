@@ -9,8 +9,6 @@ public interface URLService {
 
     Url findUrlByShort(String shortURL);
 
-    Url findUrlByLong(String longURL);
-
     List<Url> findAllByAccountId(String accountId);
 
     void incrementCallsValue(Url url);
