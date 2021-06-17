@@ -1,6 +1,5 @@
 package com.petrusova.urlshortener.resource;
 
-import com.petrusova.urlshortener.domain.Account;
 import com.petrusova.urlshortener.resource.dtos.AccountCreationRequest;
 import com.petrusova.urlshortener.resource.dtos.AccountCreationResponse;
 import com.petrusova.urlshortener.service.AccountService;
