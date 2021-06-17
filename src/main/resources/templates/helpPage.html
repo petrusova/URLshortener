@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help page</title>
+    <style>
+        body {
+            font-family: Calibri;
+        }
+
+        code {
+            font-family: Consolas;
+            color: indianred;
+            background-color: whitesmoke;
+        }
+
+        p {
+            padding-left: 3em;
+        }
+
+        pre code {
+            background-color: #eee;
+            border: 1px solid #999;
+            display: block;
+            margin-left: 50px;
+            padding: 10px;
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the best URL Shortener around.</h1>
+
+How to run:<br>
+<ol>
+    <li>Download the .jar file from <a href="https://github.com/petrusova/URLshortener"> the GitHub repo.</a></li>
+    <li>Run using a command: <code>java -jar URLshortener-0.0.1-SNAPSHOT.jar</code></li>
+    <li>You can access page localhost:8080/help</li>
+</ol>
+Available endpoints without registration:
+<ul>
+    <li><code>GET /help</code> - displays this helpful page</li>
+    <li><code>POST /account</code> - create an account</li>
+</ul>
+
+<h3>Creating an account:</h3>
+<p>
+    <code>POST /account</code><br>
+    Request body:
+<pre><code>{
+   "accountId" : "&lt;account_id_you_want&gt;"
+}
+</code></pre>
+
+<p>
+    Account id is your username, it is mandatory and has to be unique.
+<br>Response (in case you are successful):<br>
+<pre><code>{
+ "success": true,
+ "description": "Your account is opened.",
+ "password": "&lt;your_password&gt;>"
+}</code></pre>
+<p>
+    <b>Don't forget to save the password!</b>
+</p>
+After you create your account you will be able to use your credentials to access these endpoints:
+<p>
+<ul>
+    <li><code>POST /register</code> - register a URL</li>
+    <li><code>GET /statistic</code> - display usage statistics</li>
+</ul>
+</p>
+
+<h3>Registering a URL</h3>
+<p>
+    <code>POST /register</code><br>
+    Request body:<br>
+    <pre><code>{
+  "URL":"https://google.com",
+  "redirectType": &lt;301 or 302&gt;
+}
+</code></pre>
+<p>
+    You can also choose to not include the redirectType property, in that case the value 301 is the default.
+    <br>Response (in case you are successful):<br>
+<pre><code>{
+  "shortUrl": "&lt;your_shortened_url&gt;"
+}
+</code></pre>
+</p><br>
+Now you are ready to call the shortened URL you registered to get redirected to your website.<br>
+Do this by going to <code>
+    localhost:8080/&lt;your_shortened_url&gt;
+</code>
+<h3>Checking your statistics</h3>
+<p>
+    <code>GET /statistic</code><br>
+    Response:<br>
+    <pre><code>{
+  "https://google.com": 1
+  "https://stackoverflow.com/" : 0
+}</code></pre>
+</p>
+<br><br><br>
+</body>
+</html>
