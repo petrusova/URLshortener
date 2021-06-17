@@ -4,8 +4,6 @@ import com.petrusova.urlshortener.UrLshortenerApplication;
 import com.petrusova.urlshortener.domain.Url;
 import com.petrusova.urlshortener.repository.AccountRepository;
 import com.petrusova.urlshortener.repository.URLRepository;
-import com.petrusova.urlshortener.resource.dtos.AccountCreationRequest;
-import com.petrusova.urlshortener.resource.dtos.AccountCreationResponse;
 import com.petrusova.urlshortener.resource.dtos.UrlRegisterRequest;
 import com.petrusova.urlshortener.resource.dtos.UrlRegisterResponse;
 import com.petrusova.urlshortener.service.AccountService;
@@ -22,13 +20,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.TestingAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.verifyNoInteractions;
-import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UrLshortenerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
