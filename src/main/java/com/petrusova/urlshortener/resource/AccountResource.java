@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping(value = "/account", consumes = "application/json", produces = "application/json")
 public class AccountResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountResource.class);
@@ -26,7 +26,7 @@ public class AccountResource {
         this.accountService = accountService;
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping
     public ResponseEntity<AccountCreationResponse> createAnAccount(@RequestBody AccountCreationRequest request) {
         if (request == null || Strings.isEmpty(request.getAccountId())) {
             LOGGER.warn("Account id needs to be provided");

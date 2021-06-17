@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.net.URI;
 
 @Controller
-@RequestMapping
+@RequestMapping(produces = "application/json")
 public class RedirectResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RedirectResource.class);

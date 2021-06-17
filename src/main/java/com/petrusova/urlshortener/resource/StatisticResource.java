@@ -17,7 +17,7 @@ import static org.springframework.http.ResponseEntity.badRequest;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/statistic")
+@RequestMapping(value = "/statistic", produces = "application/json")
 public class StatisticResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(StatisticResource.class);
     private final StatisticsService statisticsService;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/register")
+@RequestMapping(value = "/register", consumes = "application/json", produces = "application/json")
 public class UrlResource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UrlResource.class);
@@ -27,7 +27,7 @@ public class UrlResource {
         this.urlService = urlService;
     }
 
-    @PostMapping(consumes = "application/json")
+    @PostMapping
     public ResponseEntity<UrlRegisterResponse> registerURL(@RequestBody UrlRegisterRequest request,
                                                            Authentication authentication) {
         boolean requestValid = validateRequest(request);

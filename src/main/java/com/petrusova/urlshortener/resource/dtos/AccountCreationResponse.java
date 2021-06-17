@@ -16,6 +16,9 @@ public class AccountCreationResponse {
         this.description = description;
     }
 
+    public AccountCreationResponse() {
+    }
+
     public boolean isSuccess() {
         return success;
     }
