@@ -23,13 +23,14 @@ public class AccountBusinessService implements AccountService {
     }
 
     @Override
-    public Account createAccount(String accountId) {
+    public String createAccount(String accountId) {
         if (accountRepository.existsById(accountId)) {
             return null;
         }
         String password = RandomStringUtils.randomAlphanumeric(8);
         String hashedPw = passwordEncoder.encode(password);
-        return accountRepository.save(new Account(accountId, hashedPw));
+        accountRepository.save(new Account(accountId, hashedPw));
+        return password;
     }
 
     @Override

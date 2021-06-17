@@ -4,7 +4,7 @@ import com.petrusova.urlshortener.domain.Account;
 
 public interface AccountService {
 
-    Account createAccount(String accountId);
+    String createAccount(String accountId);
 
     Account findAccount(String accountId);
 }

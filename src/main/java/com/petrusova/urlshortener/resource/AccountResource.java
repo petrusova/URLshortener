@@ -34,15 +34,15 @@ public class AccountResource {
             return ResponseEntity.badRequest().body(response);
         }
 
-        Account createdAccount = accountService.createAccount(request.getAccountId());
+        String createdAccountPassword = accountService.createAccount(request.getAccountId());
 
-        if (createdAccount == null) {
+        if (createdAccountPassword == null) {
             LOGGER.warn("Account not created for id: '{}', it already exists.", request.getAccountId());
             AccountCreationResponse response = new AccountCreationResponse(false, "Account for this id already exists.");
             return ResponseEntity.badRequest().body(response);
         }
         LOGGER.info("Account created for id: '{}'", request.getAccountId());
-        AccountCreationResponse response = new AccountCreationResponse(true, "Your account is opened.", createdAccount.getPassword());
+        AccountCreationResponse response = new AccountCreationResponse(true, "Your account is opened.", createdAccountPassword);
         return ResponseEntity.ok().body(response);
     }
 }
