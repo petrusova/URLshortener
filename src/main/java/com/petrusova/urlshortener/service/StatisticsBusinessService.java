@@ -36,10 +36,6 @@ public class StatisticsBusinessService implements StatisticsService {
             return Collections.emptyMap();
         }
         List<Url> urlsForAccount = urlService.findAllByAccountId(accountId);
-        if (urlsForAccount.isEmpty()) {
-            LOGGER.warn("No URLs registered for account id '{}'.", accountId);
-            return Collections.emptyMap();
-        }
         return urlsForAccount.stream().collect(Collectors.toMap(Url::getLongURL, Url::getCalls));
     }
 }
